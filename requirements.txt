@@ -1,2 +1,5 @@
 galois
 ipycanvas
+ipywidgets
+numpy
+matplotlib
