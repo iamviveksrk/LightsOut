@@ -3,3 +3,4 @@ ipycanvas
 ipywidgets
 numpy
 matplotlib
+rise
