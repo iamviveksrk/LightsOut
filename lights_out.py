@@ -1,12 +1,9 @@
-import galois
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from IPython.display import clear_output, HTML
 from matplotlib import animation
 from ipycanvas import Canvas, hold_canvas
-
-GF = galois.GF(2)
 
 class LightsOut:
 
@@ -24,7 +21,7 @@ class LightsOut:
 
         self.stamp_effect = stamp_effect
         
-        self.action_matrix = GF(np.array([self.act_vec(point) for point in self.grid], dtype=int)) 
+        self.action_matrix = np.array([self.act_vec(point) for point in self.grid], dtype=int)
     
     def point_number(self, point):
         '''Returns the name/number of a particular point/location on the grid'''
@@ -82,7 +79,7 @@ class LightsOut:
     def play(self, state = None):
 
         if state is None:
-            state = GF(np.ones(self.n).astype(int))
+            state = np.ones(self.n).astype(int)
 
         plane = self.state_to_plane(state)
         self.displane(plane)
@@ -97,7 +94,7 @@ class LightsOut:
             if next_move not in range(self.n):
                 print('Enter valid label!')
             else:
-                state += self.action_matrix[:, next_move]
+                state = np.mod(state + self.action_matrix[:, next_move], 2)
                 
                 plane = self.state_to_plane(state)
                 self.displane(plane)
@@ -107,13 +104,44 @@ class LightsOut:
         else:
             print('Solved!')
     
+    def z2_rref(self, matrix):
+        A = np.array(matrix)
+        
+        p_index = -1
+        c = 0
+        r = 0
+
+        while c <= A.shape[1]-2 and r <= A.shape[0]-1:
+
+            ones = list(np.arange(A.shape[0])[A[:, c] == 1])
+            candidate_p = [i for i in ones if i >= r]
+
+            if candidate_p:
+                p_index = candidate_p[0]
+
+                # Swap
+                A[[p_index, r]] = A[[r, p_index]]
+
+                ones = list(np.arange(A.shape[0])[A[:, c] == 1])
+                ones.remove(r)
+
+                # Reduce
+                for i in ones:
+                    A[i] = np.mod(A[r] + A[i], 2)
+
+                r += 1
+
+            c += 1
+        
+        return A
+    
     def solve(self, state = None):
 
         if state is None:
-            state = GF(np.ones(self.n).astype(int))
+            state = np.ones(self.n).astype(int)
         
         self.A = np.c_[self.action_matrix, state]
-        self.A_rref = self.A.row_reduce()
+        self.A_rref = self.z2_rref(self.A)
 
         reqs = np.arange(self.n)[self.A_rref[:, -1]==1]
         
@@ -131,7 +159,7 @@ class LightsOut:
     def illustrate_moves(self, moves, state=None, label=False):
 
         if state is None:
-            state = GF(np.ones(self.n).astype(int))
+            state = np.ones(self.n).astype(int)
 
         artists = []
         fig, ax = plt.subplots()
@@ -142,7 +170,7 @@ class LightsOut:
 
         for i in moves:
 
-            state += self.action_matrix[:, i]
+            state = np.mod(state + self.action_matrix[:, i], 2)
             plane = self.state_to_plane(state)
             ax, frame = self.displane(plane, ax=ax, label=label)
             artists.append(frame)
