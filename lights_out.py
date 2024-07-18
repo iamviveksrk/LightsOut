@@ -4,6 +4,7 @@ from matplotlib.colors import ListedColormap
 from IPython.display import clear_output, HTML
 from matplotlib import animation
 from ipycanvas import Canvas, hold_canvas
+from time import sleep
 
 class LightsOut:
 
@@ -104,36 +105,83 @@ class LightsOut:
         else:
             print('Solved!')
     
-    def z2_rref(self, matrix):
+    def z2_rref(self, matrix, illustrate=False, guide=False, period=0.2):
         A = np.array(matrix)
         
         p_index = -1
         c = 0
         r = 0
 
+        ts = int(illustrate) * period
+
         while c <= A.shape[1]-2 and r <= A.shape[0]-1:
 
             ones = list(np.arange(A.shape[0])[A[:, c] == 1])
             candidate_p = [i for i in ones if i >= r]
+            if illustrate:
+                clear_output(wait=True)
+                if guide:
+                    inp = input()
+                    guide = inp != ">>"
+                print(f'> {r} rows done:')
+                print_matrix(A)
+                sleep(ts)
 
             if candidate_p:
                 p_index = candidate_p[0]
+                if illustrate:
+                    clear_output(wait=True)
+                    if guide:
+                        inp = input()
+                        guide = inp != ">>"
+                    print(f'> Swap rows {p_index+1} and {r+1}:')
+                    print_matrix(A)
+                    sleep(ts)
 
                 # Swap
                 A[[p_index, r]] = A[[r, p_index]]
+                if illustrate:
+                    clear_output(wait=True)
+                    if guide:
+                        inp = input()
+                        guide = inp != ">>"
+                    print(f'> Swapped rows {p_index+1} and {r+1}:')
+                    print_matrix(A)
+                    sleep(ts)
 
                 ones = list(np.arange(A.shape[0])[A[:, c] == 1])
                 ones.remove(r)
 
                 # Reduce
                 for i in ones:
+                    if illustrate:
+                        clear_output(wait=True)
+                        if guide:
+                            inp = input()
+                            guide = inp != ">>"
+                        print(f'> R{i+1} <= R{i+1} + R{r+1}:')
+                        print_matrix(A)
+                        sleep(ts)
+
                     A[i] = np.mod(A[r] + A[i], 2)
+                    if illustrate:
+                        clear_output(wait=True)
+                        if guide:
+                            inp = input()
+                            guide = inp != ">>"
+                        print(f'> R{i+1} reduced!')
+                        print_matrix(A)
+                        sleep(ts)
 
                 r += 1
 
             c += 1
         
         return A
+    
+    def illustrate_elimination(self, period=0.1, guide=True):
+        self.solve();
+        self.z2_rref(self.A, illustrate=True, guide=guide, period=period);
     
     def solve(self, state = None):
 
@@ -184,4 +232,15 @@ class LightsOut:
     def illustrate_solution(self, state=None, label=False):
         sol = self.solve(state)
         return self.illustrate_moves(sol, state=state, label=label)
-        
+
+def print_matrix(A, last=True):
+    if last:
+        arr, right = np.array(A[:, :-1]).astype(str), np.array(A[:, -1]).astype(str)
+        arr[arr == '0'], right[right == '0'] = '.', '.'
+        for (arr1, right1) in zip(arr, right):
+            print(' '.join(arr1), '|', right1)
+    else:
+        arr = np.array(A[:, :-1]).astype(str)
+        arr[arr == '0'] = '.'
+        for arr1 in arr:
+            print(' '.join(arr1))
