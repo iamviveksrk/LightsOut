@@ -1,0 +1,12 @@
+title: Size and shape doesn't matter!
+author: Vivek Sivaramakrishnan
+logo: logo.jpg
+execute:
+  execute_notebooks: 'off'
+
+repository:
+  url: https://github.com/iamviveksrk/LightsOut
+
+launch_buttons:
+  binderhub_url: "https://mybinder.org"
+  thebe: true
