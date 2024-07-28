@@ -1,0 +1,905 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lights Out &#8212; Size and shape doesn&#39;t matter!</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'main';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Size and shape doesn't matter! - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Size and shape doesn't matter! - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Lights Out
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/iamviveksrk/LightsOut/master?urlpath=tree/main.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/main.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lights Out</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanics-of-the-game">Mechanics of the Game</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo">Demo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-the-game">Solving the Game</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-the-configuration-and-actions">Encoding the configuration and actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulating-the-problem">Formulating the problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-the-problem">Solving the problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-jordan-in-mathbb-z-2">Gauss-Jordan in <span class="math notranslate nohighlight">\(\mathbb{Z}_2\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#is-the-problem-always-solvable">Is the problem always solvable?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#size-and-shape-doesn-t-matter">Size and Shape doesn’t matter!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-your-own-lightsout-level">Create your own <code class="docutils literal notranslate"><span class="pre">LightsOut</span></code> level!</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-backtracking-summary-of-the-proof">A <em>backtracking</em> summary of the proof:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lights-out">
+<h1>Lights Out<a class="headerlink" href="#lights-out" title="Link to this heading">#</a></h1>
+<p>In this presentation, I cover:</p>
+<ul class="simple">
+<li><p>The mechanics of the Lights Out game</p></li>
+<li><p>A playable demo</p></li>
+<li><p>Solving the game (RREF over <span class="math notranslate nohighlight">\(\mathbb{Z}_2\)</span>)</p></li>
+<li><p><em>Solvability</em> of a game</p></li>
+<li><p>(crux.) Size and Shape doesn’t matter</p></li>
+<li><p>Create your own lights out grid, and have the program solve it!</p></li>
+<li><p>Proof that the all lights-on configuration is always winnable</p></li>
+</ul>
+<hr class="docutils" />
+<p>This is an interactive presentation (RISE). Therefore, make sure to run each cell that appears using <code class="docutils literal notranslate"><span class="pre">ctrl</span></code>+<code class="docutils literal notranslate"><span class="pre">enter</span></code>. Use the <code class="docutils literal notranslate"><span class="pre">PgUp</span></code> and <code class="docutils literal notranslate"><span class="pre">PgDn</span></code> buttons to navigate through the slides.</p>
+<hr class="docutils" />
+<p>This presentation is heavily inspired from this <a class="reference external" href="https://www.youtube.com/watch?v=1izbpSk3ays">video</a>, and a <a class="reference external" href="https://njohnston.ca/lights_out.pdf">chapter</a> on the same topic; both by <a class="reference external" href="https://njohnston.ca/">Nathaniel Johnston</a>.</p>
+<section id="mechanics-of-the-game">
+<h2>Mechanics of the Game<a class="headerlink" href="#mechanics-of-the-game" title="Link to this heading">#</a></h2>
+<p>In Lights-Out, there is a grid (typically square) with lights in each square. Each light can be in either of <span class="math notranslate nohighlight">\(2\)</span> states - <code class="docutils literal notranslate"><span class="pre">on</span></code> or <code class="docutils literal notranslate"><span class="pre">off</span></code>. The game starts with some configuration of these lights.</p>
+<p>The goal in Lights-Out is to turn all these lights off. The user has the ability to select lights to turn on/off. But there’s a catch!</p>
+<p>Turning on/off a light also affects its orthogonal “neighbours”. The effect is to flip the neighbour’s states too.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">lights_out</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">canvas</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="demo">
+<h3>Demo<a class="headerlink" href="#demo" title="Link to this heading">#</a></h3>
+<p>Run the code-cell below to play the <span class="math notranslate nohighlight">\(3 \times 3\)</span> Lights Out game!</p>
+<p>Input the name/label of the button you want to press.</p>
+<p>The inputs terminate when the puzzle is solved (when all the lights are off).</p>
+<p>If you want to give up, input <span class="math notranslate nohighlight">\(-1\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">LightsOut</span><span class="p">([(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)])</span>
+<span class="n">env</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you were unable to solve the <span class="math notranslate nohighlight">\(3 \times 3\)</span> grid and would like to know a <em>possible</em> solution sequence, use <code class="docutils literal notranslate"><span class="pre">LightsOut.solve()</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here’s an example on the <span class="math notranslate nohighlight">\(5 \times 5\)</span> lights out grid. The <code class="docutils literal notranslate"><span class="pre">LightsOut.illustrate_solution()</span></code> method generates an animation of a possible solution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">LightsOut</span><span class="p">([(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Move Sequence:&#39;</span><span class="p">,</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)))</span>
+<span class="n">env</span><span class="o">.</span><span class="n">illustrate_solution</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="solving-the-game">
+<h2>Solving the Game<a class="headerlink" href="#solving-the-game" title="Link to this heading">#</a></h2>
+<p>For now, lets consider the <span class="math notranslate nohighlight">\(3 \times 3\)</span> grid to illustrate the solution. The method can then be generalized as well.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">LightsOut</span><span class="p">([(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="encoding-the-configuration-and-actions">
+<h3>Encoding the configuration and actions<a class="headerlink" href="#encoding-the-configuration-and-actions" title="Link to this heading">#</a></h3>
+<p>The states of the 9 lights are firstly encoded in binary- <span class="math notranslate nohighlight">\(0\)</span> for <code class="docutils literal notranslate"><span class="pre">off</span></code> and <span class="math notranslate nohighlight">\(1\)</span> for <code class="docutils literal notranslate"><span class="pre">on</span></code>. These values are then populated into a 9-dimensional vector over <span class="math notranslate nohighlight">\(\mathbb{Z}_2\)</span></p>
+<p>By doing this, actions (button presses) can now be represented by vector addition. Each button press will correspond to a vector of <span class="math notranslate nohighlight">\(0\)</span>s and <span class="math notranslate nohighlight">\(1\)</span>s, where the presence of a <span class="math notranslate nohighlight">\(1\)</span> indicates that that particular light is an orthogonal neighbour and hence, is also afected by the action.</p>
+<p>For example, the vector toggling button <span class="math notranslate nohighlight">\(4\)</span> (let’s call it <span class="math notranslate nohighlight">\(\mathbf{a_4}\)</span>) corresponds to:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{a_4} = (0, 1, 0, 1, 1, 1, 0, 1, 0)
+\]</div>
+<p>Since pressing button <span class="math notranslate nohighlight">\(4\)</span> affects itself, and also its orthogonal neighbours <span class="math notranslate nohighlight">\(1\)</span>, <span class="math notranslate nohighlight">\(3\)</span>, <span class="math notranslate nohighlight">\(5\)</span>, and <span class="math notranslate nohighlight">\(7\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">displane</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">((</span><span class="sa">f</span><span class="s1">&#39;This state is encoded by: [</span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">config</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">four</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">env</span><span class="o">.</span><span class="n">displane</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">config</span><span class="o">+</span><span class="n">four</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">config</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">((</span><span class="sa">f</span><span class="s1">&#39;Pressing 4;&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Fact:</strong> The solution only depends on which buttons are pressed.</p>
+<p><em>Why?</em></p>
+<ul class="simple">
+<li><p>If we focus solely on <em>just one</em> light, then its state at the end of the game <strong>only</strong> depends on its own starting state, and the number of times the buttons corresponding to itself and its’ neighbours were pressed.</p></li>
+<li><p>No solution may <em>require</em> us to press a button more than once, since pressing a button is the equivalent to not pressing at all. (This observation also re-inforces our choice of <span class="math notranslate nohighlight">\(\mathbb{Z}_2\)</span>)</p></li>
+</ul>
+</section>
+<section id="formulating-the-problem">
+<h3>Formulating the problem<a class="headerlink" href="#formulating-the-problem" title="Link to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{v_s}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v_e}\)</span> denote the starting and intended final configurations respectively, and let <span class="math notranslate nohighlight">\(\mathbf{a_i}\)</span> denote the <span class="math notranslate nohighlight">\(9\)</span> different actions for our <span class="math notranslate nohighlight">\(3 \times 3\)</span> grid. Then our goal is to find <span class="math notranslate nohighlight">\(x_1, x_2, \cdots, x_9\)</span> such that:</p>
+<p>\begin{align}
+\mathbf{v_s} + (x_1\mathbf{a_1} + x_2\mathbf{a_2} + \cdots + x_9\mathbf{a_9}) &amp;= \mathbf{v_c}, \quad \text{or} \
+x_1\mathbf{a_1} + x_2\mathbf{a_2} + \cdots + x_9\mathbf{a_9} &amp;= \mathbf{v_e} - \mathbf{v_s}
+\end{align}</p>
+<p>This is a system of linear equations. Taking <span class="math notranslate nohighlight">\(A = [\mathbf{a_1} | \mathbf{a_2} | \cdots | \mathbf{a_9}]\)</span> we can rewrite the above system as</p>
+<div class="math notranslate nohighlight">
+\[
+A\mathbf{x} = \mathbf{v_e} - \mathbf{v_s}
+\]</div>
+<p>For our <span class="math notranslate nohighlight">\(3 \times 3\)</span> case, the matrix <span class="math notranslate nohighlight">\(A\)</span> looks something like this (dots are used in-place of 0s for readability):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_matrix</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">action_matrix</span><span class="p">,</span> <span class="n">last</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="solving-the-problem">
+<h3>Solving the problem<a class="headerlink" href="#solving-the-problem" title="Link to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{v_s} = 1\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v_e} = 0\)</span> i.e, we start with the “all-lights on” configuration, and need to turn all the lights off to solve the game. Equivalently, we need to solve the linear system <span class="math notranslate nohighlight">\(A\mathbf{x} = \mathbf{v_e}-\mathbf{v_s} = 1\)</span></p>
+<p>We construct the augmented matrix <span class="math notranslate nohighlight">\([A | 1]\)</span>, and obtain its reduced row-echelon form:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">solve</span><span class="p">();</span>
+<span class="n">print_matrix</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_matrix</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">A_rref</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="gauss-jordan-in-mathbb-z-2">
+<h3>Gauss-Jordan in <span class="math notranslate nohighlight">\(\mathbb{Z}_2\)</span><a class="headerlink" href="#gauss-jordan-in-mathbb-z-2" title="Link to this heading">#</a></h3>
+<p>Below is the step-by-step visualization of Gauss-Jordan on reducing the matrix <span class="math notranslate nohighlight">\([A|1]\)</span>.</p>
+<p>Press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to go through each step. Input <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> to auto-play:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span><span class="o">.</span><span class="n">illustrate_elimination</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the above, setting <span class="math notranslate nohighlight">\(\mathbf{x} = (1, 0, 1, 0, 1, 0, 1, 0, 1)\)</span> (corresponding to the <span class="math notranslate nohighlight">\(0\)</span>th, <span class="math notranslate nohighlight">\(2\)</span>nd, <span class="math notranslate nohighlight">\(4\)</span>th, <span class="math notranslate nohighlight">\(6\)</span>th and <span class="math notranslate nohighlight">\(8\)</span>th actions) is a solution for the <span class="math notranslate nohighlight">\(3 \times 3\)</span> Lights Out puzzle.</p>
+<p>Note that in this case, the reduced row-echelon form has the identity matrix on the left (hence full rank), which indicates that a solution <em>always exists</em> (alternatively, any starting configuration is always winnable). This may not always happen.</p>
+<p><strong>Question:</strong> What are the number of starting configurations that are winnable in the <span class="math notranslate nohighlight">\(3 \times 3\)</span> case?</p>
+<p>Any starting configuration is winnable; so there are <span class="math notranslate nohighlight">\(2^9\)</span> winnable configurations.</p>
+</section>
+<section id="is-the-problem-always-solvable">
+<h3>Is the problem always solvable?<a class="headerlink" href="#is-the-problem-always-solvable" title="Link to this heading">#</a></h3>
+<p>Let’s again consider the <span class="math notranslate nohighlight">\(5 \times 5\)</span> case, and obtain the row-reduced echelon form of its action matrix:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">LightsOut</span><span class="p">([(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)])</span>
+<span class="n">env</span><span class="o">.</span><span class="n">solve</span><span class="p">();</span>
+<span class="n">env</span><span class="o">.</span><span class="n">illustrate_elimination</span><span class="p">(</span><span class="n">guide</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Observe that there are <span class="math notranslate nohighlight">\(2\)</span> “trailing” vectors that are not part of the leading pivot matrix (free variables).</p>
+<p>Let’s take the trailing columns (corresponding to <span class="math notranslate nohighlight">\(23\)</span>, and <span class="math notranslate nohighlight">\(24\)</span>) of the matrix and visualize it’s move sequence:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">move_seq</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">env</span><span class="o">.</span><span class="n">A_rref</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">3</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">move_seq</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">illustrate_moves</span><span class="p">(</span><span class="n">move_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">move_seq</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">env</span><span class="o">.</span><span class="n">A_rref</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">move_seq</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">illustrate_moves</span><span class="p">(</span><span class="n">move_seq</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that this move sequence is exactly equivalent to pressing buttons 23 and 24 once. Buttons 23 and 24 therefore become <em>redundant</em>, since there exists some other combination of button presses that yield the exact same effect.</p>
+<p><strong>Question</strong>: What are the number of starting configurations that are winnable in the <span class="math notranslate nohighlight">\(5 \times 5\)</span> case?</p>
+<ul class="simple">
+<li><p>In the <span class="math notranslate nohighlight">\(5 \times 5\)</span> case, we have 2 free-variables; buttons <span class="math notranslate nohighlight">\(23\)</span> and <span class="math notranslate nohighlight">\(24\)</span>.</p></li>
+<li><p>Now, let <span class="math notranslate nohighlight">\(x\)</span> be the solution for a particular game.</p></li>
+<li><p>Note that since buttons <span class="math notranslate nohighlight">\(23\)</span> and <span class="math notranslate nohighlight">\(24\)</span> are redundant buttons, we can generate 3 more solutions for the same by choosing whether to press or not press buttons <span class="math notranslate nohighlight">\(23\)</span> and <span class="math notranslate nohighlight">\(24\)</span>.</p></li>
+<li><p>Therefore, only <span class="math notranslate nohighlight">\(2^{25}/2^{2} = 2^{23}\)</span> starting configurations are solvable.</p></li>
+</ul>
+<p>The implication is that there may exist certain initial configurations that are not solvable.</p>
+<p>However, there is a neat result:</p>
+<p>The all <span class="math notranslate nohighlight">\(1\)</span>s configuration is <strong>always</strong> solvable!</p>
+<p><strong>Always</strong>; irrespective of the size, or even the shape of the <code class="docutils literal notranslate"><span class="pre">LightsOut</span></code> grid!</p>
+<p>We’ll prove this lemma at the end of this presentation. But let’s experiment with this freedom of size and shape of our level first:</p>
+</section>
+</section>
+<section id="size-and-shape-doesn-t-matter">
+<h2>Size and Shape doesn’t matter!<a class="headerlink" href="#size-and-shape-doesn-t-matter" title="Link to this heading">#</a></h2>
+<p>We can use the same row-reduction method discussed earlier on grids with any shape and size!</p>
+<p>Try solving the below <em>traingular</em> puzzle. Remember, you can always give up by passing <code class="docutils literal notranslate"><span class="pre">-1</span></code> as the input.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">LightsOut</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)])</span>
+<span class="n">env</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">initial_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="n">initial_state</span><span class="p">))</span>
+<span class="n">env</span><span class="o">.</span><span class="n">illustrate_solution</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">initial_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-your-own-lightsout-level">
+<h2>Create your own <code class="docutils literal notranslate"><span class="pre">LightsOut</span></code> level!<a class="headerlink" href="#create-your-own-lightsout-level" title="Link to this heading">#</a></h2>
+<p>Draw your level here…</p>
+<p>…and have the program solve it here!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">canvas</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="p">(</span><span class="n">canvas</span><span class="o">.</span><span class="n">get_image_data</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)[:,:</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.95</span><span class="o">*</span><span class="n">width</span><span class="p">)][::</span><span class="n">marker_size</span><span class="p">,</span> <span class="p">::</span><span class="n">marker_size</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="n">grid</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)]]</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">LightsOut</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">illustrate_solution</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Statement:</strong> The  “all-lights on” configuration is always winnable.</p>
+<p><strong>Proof:</strong> Let the action matrix be <span class="math notranslate nohighlight">\(A\)</span>. A very simplified version of the proof is as follows:</p>
+<ul class="simple">
+<li><p>All-Lights on configuration solvable <span class="math notranslate nohighlight">\(\implies \mathbb{1} \in \mathcal{C}(A)\)</span></p></li>
+</ul>
+<ul class="simple">
+<li><p>Observe <span class="math notranslate nohighlight">\(A = A^T\)</span> by construction (<span class="math notranslate nohighlight">\(A_{ij}\)</span> is <span class="math notranslate nohighlight">\(1\)</span> if <span class="math notranslate nohighlight">\(i\)</span> is a neighbour of <span class="math notranslate nohighlight">\(j\)</span>, and the <em>neighbour</em> relation is symmetric). Thus $<span class="math notranslate nohighlight">\(\mathbb{1} \in \mathcal{C}(A) \implies \mathbb{1} \in \mathcal{C}(A^T) \implies \mathbb{1} \in \mathcal{R}(A)\)</span>$</p></li>
+</ul>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(\hat{A}\)</span> be the row echelon form of A. Note that <span class="math notranslate nohighlight">\(\mathcal{R}(A) = \mathcal{R}(\hat{A})\)</span>. Therefore <span class="math notranslate nohighlight">\(\mathbb{1} \in \mathcal{R}(A) \implies \mathbb{1} \in \mathcal{R}(\hat{A})\)</span></p></li>
+</ul>
+<ul class="simple">
+<li><p>Now, consider the sum of all rows in <span class="math notranslate nohighlight">\(\hat{A}\)</span>. We want this to be <span class="math notranslate nohighlight">\(\mathbb{1}\)</span>, since then <span class="math notranslate nohighlight">\(\mathbb{1} \in \mathcal{R}(\hat{A}\)</span>). This requires all columns to contain an odd number of <span class="math notranslate nohighlight">\(1\)</span>s in them (recall we are working in <span class="math notranslate nohighlight">\(\mathbb{Z}_2\)</span>).</p></li>
+</ul>
+<ul class="simple">
+<li><p>Note this is true for all the leading columns of <span class="math notranslate nohighlight">\(\hat{A}\)</span>. Therefore, we need to show that the non-leading columns of <span class="math notranslate nohighlight">\(\hat{A}\)</span> also have an odd number of <span class="math notranslate nohighlight">\(1\)</span>s in them.</p></li>
+</ul>
+<ul>
+<li><p>Consider the basis for <span class="math notranslate nohighlight">\(\mathcal{N}(A)\)</span>. We can construct this basis as follows:</p>
+<ul class="simple">
+<li><p>For every non-leading column in <span class="math notranslate nohighlight">\(\hat{A}\)</span>:</p>
+<ol class="arabic simple">
+<li><p>Come up with a linear combination of leading columns to construct the selected non-leading column. Note this combination is exactly the non-leading column padded with some <span class="math notranslate nohighlight">\(0\)</span>s.</p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(-1\)</span> to the index of the non-leading column in this combination. This will then yield a combination <span class="math notranslate nohighlight">\(x\)</span> s.t. <span class="math notranslate nohighlight">\(\hat{A}x = \mathbb{0}\)</span></p></li>
+</ol>
+</li>
+</ul>
+<p>Note: In <span class="math notranslate nohighlight">\(\mathbb{Z}_2, -1 \equiv 1\)</span></p>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Recall from the <span class="math notranslate nohighlight">\(5 \times 5\)</span> example, where buttons <span class="math notranslate nohighlight">\(24\)</span> and <span class="math notranslate nohighlight">\(25\)</span> were shown to be redundant via reconstruction of the leading columns. If we perform the button sequence for button <span class="math notranslate nohighlight">\(24\)</span>, and then again press <span class="math notranslate nohighlight">\(24\)</span>, then observe that yields the all-off configuration, implying it is a part of <span class="math notranslate nohighlight">\(\mathcal{N}(A)\)</span>. This exact mechanism is described in the construction above.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Thus, we have that the number of <span class="math notranslate nohighlight">\(1\)</span>s in the null space basis is <span class="math notranslate nohighlight">\(1\)</span> more than the number of <span class="math notranslate nohighlight">\(1\)</span>s in the non-leading column.</p></li>
+</ul>
+<ul class="simple">
+<li><p>We wanted to show that non-leading columns contain an odd number of <span class="math notranslate nohighlight">\(1\)</span>s. Hence, it is now enough to show that all vectors of the null space have an even number of <span class="math notranslate nohighlight">\(1\)</span>s, and we’ll be done.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(y \in \mathcal{N}(A)\)</span> have <span class="math notranslate nohighlight">\(k\)</span> ones (we want to show <span class="math notranslate nohighlight">\(k\)</span> is even). We have <span class="math notranslate nohighlight">\(Ay = \mathbb{0}\)</span></p></li>
+</ul>
+<ul class="simple">
+<li><p>Construct a <span class="math notranslate nohighlight">\(k \times k\)</span> shape matrix <span class="math notranslate nohighlight">\(B\)</span> by deleting row <span class="math notranslate nohighlight">\(j\)</span> and column <span class="math notranslate nohighlight">\(j\)</span> of <span class="math notranslate nohighlight">\(A\)</span>, wherever <span class="math notranslate nohighlight">\(y_j = 0\)</span>. For example:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{y}=\left[\begin{array}{l}
+0 \\
+1 \\
+1 \\
+0 \\
+1
+\end{array}\right] \quad \text { and } \quad A=\left[\begin{array}{lllll}
+1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 \\
+1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 1
+\end{array}\right] \quad \text { then } \quad B=\left[\begin{array}{lll}
+1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 1 \\
+0 &amp; 1 &amp; 1
+\end{array}\right]
+\end{split}\]</div>
+<ul class="simple">
+<li><p>Now, <span class="math notranslate nohighlight">\(Ay = \mathbb{0} \implies B\mathbb{1} = \mathbb{0}\)</span></p></li>
+</ul>
+<ul class="simple">
+<li><p>Observe that <span class="math notranslate nohighlight">\(B\mathbb{1}\)</span> simply counts the number of <span class="math notranslate nohighlight">\(1\)</span>s in the rows of <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Hence <span class="math notranslate nohighlight">\(B\mathbb{1} = \mathbb{0} \implies\)</span> every row in <span class="math notranslate nohighlight">\(B\)</span> contains an even number of <span class="math notranslate nohighlight">\(1\)</span>s.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Observe that <span class="math notranslate nohighlight">\(B\)</span> by construction is symmetric, and all its diagonal entries are <span class="math notranslate nohighlight">\(1\)</span> (very much like its parent matrix <span class="math notranslate nohighlight">\(A\)</span>).</p></li>
+</ul>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(C = B - I\)</span>; <span class="math notranslate nohighlight">\(C\)</span> is just <span class="math notranslate nohighlight">\(B\)</span> but with all diagonal entries as <span class="math notranslate nohighlight">\(0\)</span>. Recall every row of <span class="math notranslate nohighlight">\(B\)</span> had an even number of <span class="math notranslate nohighlight">\(1\)</span>s.</p></li>
+</ul>
+<ul class="simple">
+<li><p>Hence, every row of <span class="math notranslate nohighlight">\(C\)</span> has an odd number of <span class="math notranslate nohighlight">\(1\)</span>s. Observe that <span class="math notranslate nohighlight">\(C\)</span> is also a symmetric <span class="math notranslate nohighlight">\(k \times k\)</span> matrix.</p></li>
+</ul>
+<ul>
+<li><p>From these properties of <span class="math notranslate nohighlight">\(C\)</span>, we can conclude that <span class="math notranslate nohighlight">\(k\)</span> is even. Can you come up with a reason why?</p>
+<p>Hint: The number of <span class="math notranslate nohighlight">\(1\)</span>s in <span class="math notranslate nohighlight">\(C\)</span> is even. Why?</p>
+</li>
+</ul>
+<ul class="simple">
+<li><p>Answer:</p>
+<ul>
+<li><p>All diagonal entries <span class="math notranslate nohighlight">\(= 0\)</span> and symmetry <span class="math notranslate nohighlight">\(\implies\)</span> number of <span class="math notranslate nohighlight">\(1\)</span>s in <span class="math notranslate nohighlight">\(C\)</span> is even.</p></li>
+<li><p>Number of <span class="math notranslate nohighlight">\(1\)</span>s in <span class="math notranslate nohighlight">\(C\)</span> is even, odd number of <span class="math notranslate nohighlight">\(1\)</span>s in each row <span class="math notranslate nohighlight">\(\implies\)</span> there are an even number of rows.</p></li>
+</ul>
+</li>
+<li><p>Hence <span class="math notranslate nohighlight">\(k\)</span> is even! This completes the proof.</p></li>
+</ul>
+<section id="a-backtracking-summary-of-the-proof">
+<h3>A <em>backtracking</em> summary of the proof:<a class="headerlink" href="#a-backtracking-summary-of-the-proof" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Recall <span class="math notranslate nohighlight">\(k\)</span> was the number of <span class="math notranslate nohighlight">\(1\)</span>s in <span class="math notranslate nohighlight">\(y\)</span>, where <span class="math notranslate nohighlight">\(y \in \mathcal{N}(A)\)</span>.</p></li>
+</ul>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(k\)</span> is even <span class="math notranslate nohighlight">\(\implies\)</span> all <span class="math notranslate nohighlight">\(y \in \mathcal{N}(A)\)</span> have an even number of <span class="math notranslate nohighlight">\(1\)</span>s.</p></li>
+</ul>
+<ul class="simple">
+<li><p>All <span class="math notranslate nohighlight">\(y \in \mathcal{N}(A)\)</span> have an even number of <span class="math notranslate nohighlight">\(1\)</span>s <span class="math notranslate nohighlight">\(\implies\)</span> all non-leading columns of <span class="math notranslate nohighlight">\(\hat{A}\)</span> have an odd number of <span class="math notranslate nohighlight">\(1\)</span>s.</p></li>
+</ul>
+<ul class="simple">
+<li><p>All non-leading columns of <span class="math notranslate nohighlight">\(\hat{A}\)</span> have an odd number of <span class="math notranslate nohighlight">\(1\)</span>s <span class="math notranslate nohighlight">\(\implies \mathbb{1} \in \mathcal{R}(\hat{A})\)</span> (summing up all rows of <span class="math notranslate nohighlight">\(\hat{A}\)</span>)</p></li>
+</ul>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbb{1} \in \mathcal{R}(\hat{A}) \implies \mathbb{1} \in \mathcal{R}(A) \implies \mathbb{1} \in \mathcal{C}(A)\)</span></p></li>
+</ul>
+<p>Therefore the <em>all lights on</em> configuration is <em>all</em>ways winnable!</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "iamviveksrk/LightsOut",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: ".venv"
+        },
+        kernelOptions: {
+            name: ".venv",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = '.venv'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanics-of-the-game">Mechanics of the Game</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo">Demo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-the-game">Solving the Game</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#encoding-the-configuration-and-actions">Encoding the configuration and actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formulating-the-problem">Formulating the problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solving-the-problem">Solving the problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-jordan-in-mathbb-z-2">Gauss-Jordan in <span class="math notranslate nohighlight">\(\mathbb{Z}_2\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#is-the-problem-always-solvable">Is the problem always solvable?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#size-and-shape-doesn-t-matter">Size and Shape doesn’t matter!</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-your-own-lightsout-level">Create your own <code class="docutils literal notranslate"><span class="pre">LightsOut</span></code> level!</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-backtracking-summary-of-the-proof">A <em>backtracking</em> summary of the proof:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Vivek Sivaramakrishnan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
