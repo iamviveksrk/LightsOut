@@ -6,6 +6,7 @@ execute:
 
 repository:
   url: https://github.com/iamviveksrk/LightsOut
+  branch: main
 
 launch_buttons:
   binderhub_url: "https://mybinder.org"
